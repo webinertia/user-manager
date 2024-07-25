@@ -1,1 +1,1 @@
-# user-manager
+# User Management Module for Mezzio Apps
