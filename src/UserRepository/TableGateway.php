@@ -51,7 +51,7 @@ final class TableGateway extends Db\AbstractRepository implements UserRepository
         if (password_verify($password, $hash)) {
             return ($this->userFactory)(
                 $credential,
-                ['Administrator'],
+                (array) $user->role_id,
                 [
                     'identity'    => $credential,
                     'id'          => $user->id,
