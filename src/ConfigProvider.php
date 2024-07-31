@@ -86,8 +86,8 @@ final class ConfigProvider
     {
         return [
             'paths' => [
-                'user-manager' => [__DIR__ . '/../templates/'],
-                'user-partial' => [__DIR__ . '/../templates/partials/'],
+                'user-manager' => [__DIR__ . '/../templates/user-manager'],
+                'user-manager-partials' => [__DIR__ . '/../templates/partials'],
             ],
         ];
     }

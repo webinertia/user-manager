@@ -80,13 +80,13 @@ class LoginHandler implements RequestHandlerInterface
             return new JsonResponse(['message' => 'Login Failed'], 401);
         }
 
-        return new HtmlResponse($this->template->render(
-            'contact-manager::landing',
-            [
-                'layout' => 'contact-manager::landing-layout',
-                'error' => 'Invalid credentials please try again.'
-            ] // parameters to pass to template
-        ));
+        // return new HtmlResponse($this->template->render(
+        //     'layout::admin',
+        //     [
+        //         'layout' => 'contact-manager::landing-layout',
+        //         'error' => 'Invalid credentials please try again.'
+        //     ] // parameters to pass to template
+        // ));
     }
 
     private function getRedirect(

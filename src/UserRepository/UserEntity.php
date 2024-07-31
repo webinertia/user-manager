@@ -6,14 +6,35 @@ namespace UserManager\UserRepository;
 
 use ArrayObject;
 use Axleus\Db;
+use Mezzio\Authentication\UserInterface;
 
-final class UserEntity extends ArrayObject implements Db\EntityInterface
+final class UserEntity extends ArrayObject implements Db\EntityInterface, UserInterface
 {
     use Db\EntityTrait;
 
     public function __construct(
     ) {
         parent::__construct([], self::ARRAY_AS_PROPS);
+    }
+
+    public function getIdentity(): string
+    {
+        return $this->getEmail();
+    }
+
+    public function getRoles(): iterable
+    {
+        return (array) $this->offsetGet('role_id');
+    }
+
+    public function getDetail(string $name, $default = null)
+    {
+        return $this->offsetGet($name) ?? $default;
+    }
+
+    public function getDetails(): array
+    {
+        return $this->getArrayCopy();
     }
 
     public function setId(int $id): void

@@ -46,21 +46,12 @@ final class TableGateway extends Db\AbstractRepository implements UserRepository
         /** @var App\UserRepository\UserEntity */
         $user = $this->findOneBy($this->config['username'], $credential);
         $hash = $user->getPassword();
-
         $this->checkBcryptHash($hash);
         if (password_verify($password, $hash)) {
             return ($this->userFactory)(
                 $credential,
-                (array) $user->role_id,
-                [
-                    'identity'    => $credential,
-                    'id'          => $user->id,
-                    'team_id'     => $user->team_id,
-                    'first_name'  => $user->first_name,
-                    'last_name'   => $user->last_name,
-                    'created_at'  => $user->created_at,
-                    'email_verified_at' => $user->email_verified_at,
-                ]
+                $user->getRoles(),
+                $user->getDetails()
             );
         }
         return null;
